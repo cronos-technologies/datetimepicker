@@ -2666,7 +2666,10 @@ var DateFormatter;
               .on('resize.xdsoft', setPos);
 
             if (options.closeOnWithoutClick) {
-              $([document.body, window]).on('touchstart mousedown.xdsoft', function arguments_callee6() {
+              $([document.body, window]).on('touchstart mousedown.xdsoft', function arguments_callee6(e) {
+                 if($(e.target).hasClass('date-time-picker')){
+                    return;  //custom fix
+                  }
                 datetimepicker.trigger('close.xdsoft');
                 $([document.body, window]).off('touchstart mousedown.xdsoft', arguments_callee6);
               });
@@ -2894,6 +2897,7 @@ var DateFormatter;
           }
         })
         .on('blur.xdsoft', function () {
+          return;  //custom fixxr
           datetimepicker.trigger('close.xdsoft');
         });
     };
